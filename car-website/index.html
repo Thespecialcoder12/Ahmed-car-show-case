@@ -1,0 +1,268 @@
+html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Made by Ahmed — Car Showcase</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Poppins',sans-serif;
+  background:radial-gradient(circle at top,#111,#000);
+  color:#fff;
+  overflow-x:hidden;
+}
+header{
+  text-align:center;
+  padding:60px 20px 10px;
+  font-size:42px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  background:linear-gradient(90deg,#ff5f6d,#ffc371,#00c6ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:fadeIn 2s ease-out forwards;
+}
+.intro{
+  text-align:center;
+  color:#aaa;
+  font-size:18px;
+  letter-spacing:1px;
+  margin-bottom:30px;
+  animation:fadeIn 3s ease-out forwards;
+}
+@keyframes fadeIn{0%{opacity:0;transform:translateY(-40px);}100%{opacity:1;transform:translateY(0);}}
+.cars{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:28px;
+  padding:40px;
+  animation:fadeInCars 3s ease forwards;
+}
+@keyframes fadeInCars{0%{opacity:0;transform:translateY(80px);}100%{opacity:1;transform:translateY(0);}}
+.car{
+  background:rgba(255,255,255,0.05);
+  border-radius:14px;
+  overflow:hidden;
+  transition:transform .4s ease, box-shadow .4s ease;
+  display:flex;
+  flex-direction:column;
+}
+.car:hover{transform:scale(1.05);box-shadow:0 10px 30px rgba(255,255,255,0.2);}
+.car img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+.car-info{padding:18px;flex-grow:1;}
+.car-info h2{font-size:22px;margin-bottom:8px;color:#00c6ff;}
+.car-info p{font-size:14px;line-height:1.4;color:#ccc;}
+button.more{
+  background:linear-gradient(90deg,#00c6ff,#ff5f6d);
+  border:none;color:#fff;padding:10px 14px;
+  border-radius:10px;cursor:pointer;
+  font-weight:600;margin-top:10px;transition:background .3s;
+}
+button.more:hover{background:linear-gradient(90deg,#ff5f6d,#ffc371);}
+footer{
+  text-align:center;
+  padding:20px;
+  color:#777;
+  border-top:1px solid rgba(255,255,255,0.1);
+  margin-top:40px;
+}
+
+/* Modal */
+.modal{
+  position:fixed;
+  top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,0.8);
+  display:none;align-items:center;justify-content:center;
+  z-index:10;
+}
+.modal-content{
+  background:#111;
+  border-radius:12px;
+  max-width:500px;
+  width:90%;
+  padding:20px;
+  text-align:center;
+  box-shadow:0 0 30px rgba(0,0,0,0.5);
+}
+.modal-content h2{color:#00c6ff;margin-bottom:10px;}
+.modal-content p{color:#ddd;font-size:15px;line-height:1.5;}
+.close-btn{
+  margin-top:15px;
+  background:#ff5f6d;
+  border:none;
+  color:#fff;
+  padding:8px 18px;
+  border-radius:8px;
+  cursor:pointer;
+}
+.close-btn:hover{background:#ff3a5a;}
+</style>
+</head>
+<body>
+<header>Made by Ahmed</header>
+<div class="intro">Explore stunning supercars with style and power</div>
+
+<section class="cars">
+  <div class="car">
+    <img src="cars/car1.jpg.jpeg" alt="Lamborghini Aventador">
+    <div class="car-info">
+      <h2>Lamborghini Aventador</h2>
+      <p>V12 engine, 769 HP, 0–100 km/h in 2.8s.</p>
+      <button class="more" data-car="1">More Info</button>
+    </div>
+  </div>
+  <div class="car">
+    <img src="cars/car2.jpg.jpeg" alt="Ferrari 488 GTB">
+    <div class="car-info">
+      <h2>Ferrari 488 GTB</h2>
+      <p>Twin-turbo V8, Italian design, 670 HP.</p>
+      <button class="more" data-car="2">More Info</button>
+    </div>
+  </div>
+  <div class="car">
+    <img src="cars/car3.jpg.jpg" alt="Bugatti Chiron">
+    <div class="car-info">
+      <h2>Bugatti Chiron</h2>
+      <p>W16 quad-turbo, 1,500 HP, 420 km/h top speed.</p>
+      <button class="more" data-car="3">More Info</button>
+    </div>
+  </div>
+  <div class="car">
+    <img src="cars/car4.jpg.jpeg" alt="McLaren 720S">
+    <div class="car-info">
+      <h2>McLaren 720S</h2>
+      <p>Twin-turbo V8, carbon-fiber frame, 710 HP.</p>
+      <button class="more" data-car="4">More Info</button>
+    </div>
+  </div>
+  <div class="car">
+    <img src="cars/car5.jpg.jpeg" alt="Porsche 911 Turbo S">
+    <div class="car-info">
+      <h2>Porsche 911 Turbo S</h2>
+      <p>Iconic design, AWD, 640 HP of pure speed.</p>
+      <button class="more" data-car="5">More Info</button>
+    </div>
+  </div>
+  <div class="car">
+    <img src="cars/car6.jpg.jpeg" alt="Aston Martin DBS">
+    <div class="car-info">
+      <h2>Aston Martin DBS</h2>
+      <p>British luxury with 715 HP twin-turbo V12.</p>
+      <button class="more" data-car="6">More Info</button>
+    </div>
+  </div>
+  <div class="car">
+    <img src="cars/car7.jpg.jpeg" alt="Koenigsegg Jesko">
+    <div class="car-info">
+      <h2>Koenigsegg Jesko</h2>
+      <p>Swedish hypercar built for 480+ km/h speed.</p>
+      <button class="more" data-car="7">More Info</button>
+    </div>
+  </div>
+  <div class="car">
+    <img src="cars/car8.jpg.jpg" alt="Tesla Model S Plaid">
+    <div class="car-info">
+      <h2>Tesla Model S Plaid</h2>
+      <p>Electric performance: 0–100 in 2.1s, no noise.</p>
+      <button class="more" data-car="8">More Info</button>
+    </div>
+  </div>
+  <div class="car">
+    <img src="cars/car9.jpg.jpg" alt="Mercedes AMG GT Black Series">
+    <div class="car-info">
+      <h2>Mercedes AMG GT Black Series</h2>
+      <p>Track-ready beast with 720 HP twin-turbo V8.</p>
+      <button class="more" data-car="9">More Info</button>
+    </div>
+  </div>
+  <div class="car">
+    <img src="cars/car10.jpg.jpeg" alt="BMW M8 Competition">
+    <div class="car-info">
+      <h2>BMW M8 Competition</h2>
+      <p>617 HP with luxury interior and AWD dynamics.</p>
+      <button class="more" data-car="10">More Info</button>
+    </div>
+  </div>
+</section>
+
+<div class="modal" id="modal">
+  <div class="modal-content" id="modal-content">
+    <h2>Car Name</h2>
+    <p>Car details here.</p>
+    <button class="close-btn" id="closeModal">Close</button>
+  </div>
+</div>
+
+<footer>© 2025 Made by Ahmed — All Rights Reserved</footer>
+
+<script>
+const modal=document.getElementById('modal');
+const modalContent=document.getElementById('modal-content');
+const closeBtn=document.getElementById('closeModal');
+
+const carsInfo={
+  1:{
+    title:"Lamborghini Aventador",
+    text:"The Lamborghini Aventador is the ultimate symbol of Italian craftsmanship and performance. Powered by a naturally aspirated 6.5-liter V12 engine that produces 769 horsepower, it rockets from 0 to 100 km/h in just 2.8 seconds. Its sharp design, scissor doors, and carbon-fiber body make it one of the most aggressive-looking supercars ever created. Every drive feels like an event, combining raw power with unmatched prestige."
+  },
+  2:{
+    title:"Ferrari 488 GTB",
+    text:"The Ferrari 488 GTB embodies precision and passion. Its twin-turbocharged 3.9-liter V8 engine produces 670 horsepower, providing explosive acceleration and razor-sharp handling. The aerodynamic curves are inspired by Formula 1 engineering, offering both performance and beauty. Inside, the driver-focused cockpit ensures that every movement feels natural, bringing pure Italian exhilaration on every drive."
+  },
+  3:{
+    title:"Bugatti Chiron",
+    text:"The Bugatti Chiron is a masterpiece of engineering and luxury. With a quad-turbo W16 engine delivering an unbelievable 1,500 horsepower, it can reach speeds beyond 420 km/h. Every Chiron is hand-assembled in France, combining cutting-edge technology with artistic craftsmanship. Its interior feels like a private jet cockpit, while the exterior reflects dominance and sophistication. The Chiron defines the limit of what’s possible on four wheels."
+  },
+  4:{
+    title:"McLaren 720S",
+    text:"The McLaren 720S blends British engineering excellence with track-level performance. Its lightweight carbon-fiber chassis and 710 horsepower twin-turbo V8 make it both agile and brutal. The teardrop design improves aerodynamics, while dihedral doors enhance its futuristic appeal. It’s not just fast—it feels alive, with instant throttle response and cornering precision that keeps your adrenaline high."
+  },
+  5:{
+    title:"Porsche 911 Turbo S",
+    text:"The Porsche 911 Turbo S is the definition of everyday supercar perfection. It combines luxury, usability, and insane performance, packing 640 horsepower and all-wheel drive. It’s lightning quick yet comfortable enough for daily driving. The 911 heritage remains visible in its design, but underneath lies modern technology that ensures unmatched control and acceleration. A true engineering icon built for both the street and the track."
+  },
+  6:{
+    title:"Aston Martin DBS",
+    text:"The Aston Martin DBS is a blend of British elegance and supercar aggression. Its 5.2-liter twin-turbo V12 delivers 715 horsepower wrapped in handcrafted luxury. Every line of its design radiates class and authority. The interior features premium materials and meticulous details, offering an exclusive experience. It’s a grand tourer that screams sophistication while delivering breathtaking power."
+  },
+  7:{
+    title:"Koenigsegg Jesko",
+    text:"The Koenigsegg Jesko is a Swedish engineering marvel built for extreme speed. Producing over 1,600 horsepower when running on E85 fuel, it pushes aerodynamic innovation to the next level. The Jesko was designed with one goal—break records. Its advanced suspension and transmission systems make it as comfortable on the track as it is on the highway. Every element is engineered with perfection and obsession for speed."
+  },
+  8:{
+    title:"Tesla Model S Plaid",
+    text:"The Tesla Model S Plaid redefines electric performance. It’s powered by three motors producing over 1,000 horsepower, accelerating from 0 to 100 km/h in a jaw-dropping 2.1 seconds. Its minimalist interior, cutting-edge tech, and instant torque create a futuristic experience. With no engine noise and unmatched smoothness, it feels like flying silently on the road. The future of performance is electric, and this Tesla proves it."
+  },
+  9:{
+    title:"Mercedes AMG GT Black Series",
+    text:"The Mercedes AMG GT Black Series is the most extreme AMG ever built. Its handcrafted 4.0-liter twin-turbo V8 delivers 720 horsepower and a sound that defines raw power. The aggressive aerodynamics, huge rear wing, and carbon-fiber panels make it a track weapon. Despite its racing DNA, it still offers luxury and comfort inside. It’s German precision blended with unrelenting force."
+  },
+  10:{
+    title:"BMW M8 Competition",
+    text:"The BMW M8 Competition is a luxury coupe with supercar performance. Equipped with a 617-horsepower twin-turbo V8 and advanced xDrive all-wheel drive, it offers thrilling power with exceptional control. The M8’s design balances elegance with aggression, while the interior surrounds the driver with premium materials and cutting-edge tech. It’s a car that effortlessly combines performance, comfort, and prestige."
+  }
+};
+
+document.querySelectorAll('.more').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const carId=btn.dataset.car;
+    const data=carsInfo[carId];
+    modalContent.querySelector('h2').innerText=data.title;
+    modalContent.querySelector('p').innerText=data.text;
+    modal.style.display='flex';
+  });
+});
+
+closeBtn.addEventListener('click',()=>modal.style.display='none');
+window.addEventListener('click',e=>{if(e.target===modal)modal.style.display='none';});
+</script>
+
+</body>
+</html>
